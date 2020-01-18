@@ -1,5 +1,9 @@
 package persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import persistence.dao.DataSource;
@@ -35,8 +39,16 @@ public class DBManager {
 		}
 		return instance;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		DBManager.getInstance();
+		Connection connection = dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "select * from utente";
+		statement = connection.prepareStatement(query);
+		ResultSet result = statement.executeQuery();
+		while (result.next()) {
+			System.out.println(result.getString("nome"));
+		}
 	}
 	
 }

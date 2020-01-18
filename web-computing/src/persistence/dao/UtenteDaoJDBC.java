@@ -14,9 +14,10 @@ public class UtenteDaoJDBC implements UtenteDao {
 	
 	@Override
 	public List<Utente> findAll() {
-		Connection connection = this.dataSource.getConnection();
+		Connection connection = null;
 		List<Utente> studenti = new LinkedList<>();
 		try {
+			connection = this.dataSource.getConnection();
 			Utente utente;
 			PreparedStatement statement;
 			String query = "select * from utente";
@@ -45,8 +46,9 @@ public class UtenteDaoJDBC implements UtenteDao {
 	
 	@Override
 	public void save(Utente utente) {
-		Connection connection = this.dataSource.getConnection();
+		Connection connection = null;
 		try {
+			connection = this.dataSource.getConnection();
 			String insert = "insert into utente(Id, Password, Nome, email,) values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getId());
@@ -67,9 +69,10 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public Utente findByPrimaryKey(String id) {
-		Connection connection = this.dataSource.getConnection();
+		Connection connection = null;
 		Utente utente = null;
 		try {
+			connection = this.dataSource.getConnection();
 			PreparedStatement statement;
 			String query = "select * from utente where Id = ?";
 			statement = connection.prepareStatement(query);
