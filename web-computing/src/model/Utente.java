@@ -1,15 +1,14 @@
 package model;
-public class Utente {
+public class Utente {//elimina id(?)
 	private String nome;
 	private String email;
 	private String id;
 	private String password;
 	
-	public Utente(String nome, String email, String id, String password) {
+	public Utente(String nome, String email, String password) {
 		super();
 		this.nome = nome;
 		this.email = email;
-		this.id = id;
 		this.password = password;
 	}
 	

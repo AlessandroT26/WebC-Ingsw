@@ -25,7 +25,6 @@ public class UtenteDaoJDBC implements UtenteDao {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				utente = new Utente();
-				utente.setId(result.getString("id"));
 				utente.setNome(result.getString("nome"));
 				utente.setEmail(result.getString("email"));
 				utente.setPassword(result.getString("password"));
@@ -48,21 +47,21 @@ public class UtenteDaoJDBC implements UtenteDao {
 	public void save(Utente utente) {
 		Connection connection = null;
 		try {
+			System.out.println("Primo try");
 			connection = this.dataSource.getConnection();
-			String insert = "insert into utente(Id, Password, Nome, email,) values (?,?,?,?)";
+			String insert = "INSERT INTO utente(nome, email, password) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, utente.getId());
-			statement.setString(2, utente.getPassword());
-			statement.setString(3, utente.getNome());
-			statement.setString(4, utente.getEmail());
+			statement.setString(1, utente.getNome());
+			statement.setString(2, utente.getEmail());
+			statement.setString(3, utente.getPassword());
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
+			throw new RuntimeException(e.getMessage());
 		} finally {
-			try {
+			try {System.out.println("secondo try");
 				connection.close();
 			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
+				throw new RuntimeException(e.getMessage());
 			}
 		}
 	}
@@ -80,18 +79,18 @@ public class UtenteDaoJDBC implements UtenteDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				utente = new Utente();
-				utente.setId(result.getString("Id"));
-				utente.setNome(result.getString("Nome"));
-				utente.setEmail(result.getString("Cognome"));
+				utente.setId(result.getString("id"));
+				utente.setNome(result.getString("nome"));
+				utente.setEmail(result.getString("cognome"));
 				utente.setPassword(result.getString("email"));
 			}
 		} catch (SQLException e) {
-			throw new PersistenceException(e.getMessage());
+			throw new RuntimeException(e.getMessage());
 		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
+				throw new RuntimeException(e.getMessage());
 			}
 		}
 		return utente;

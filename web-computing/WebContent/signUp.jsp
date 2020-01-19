@@ -58,20 +58,20 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="<%=request.getContextPath()+"/ChangePage" %>" method="get">
+				<form action="<%=request.getContextPath()+"/ChangePage" %>" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<label for="nomeUtente"></label>
-						<input type="text" class="form-control" value="nome" id="nomeUtente" placeholder="Nome Utente">
+						<label for="nomeUtente"></label> <!--USIAMO NAME PER MANDARE I DATI-->
+						<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Utente">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<label for="email"></label>
-						<input type="text" class="form-control" value="email" id="email" placeholder="Email">
+						<input type="text" class="form-control" name="email"  id="email" placeholder="Email">
 						
 					</div>
 					<div class="input-group form-group">
@@ -79,7 +79,7 @@
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
 						<label for="password"></label>
-						<input type="password" class="form-control" value="password" id="password" placeholder="password">
+						<input type="password" class="form-control" name="password" id="password" placeholder="password">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">

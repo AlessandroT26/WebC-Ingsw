@@ -3,13 +3,13 @@ public class DAOFactory {
 	public static DataSource dataSource;
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			dataSource = new DataSource("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11215312", "sql11215312",
-					"lBDflwqHkN");
+			Class.forName("org.postgresql.Driver").newInstance();
+			dataSource = new DataSource("jdbc:postgresql://localhost:5432/postgres", "postgres", "Accettare7");
 			// dataSource = new DataSource("jdbc:mysql://localhost:3306/sql11215312",
 			// "root", "");
 		} catch (Exception e) {
-			System.err.println("MySQLDAOFactory.class: failed to load MySQL JDBC driver\n" + e);
+			//System.err.println("MySQLDAOFactory.class: failed to load MySQL JDBC driver\n" + e);
+			System.out.println("porca madonna");
 			e.printStackTrace();
 		}
 	}

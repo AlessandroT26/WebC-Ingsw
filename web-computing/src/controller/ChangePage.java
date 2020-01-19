@@ -17,8 +17,7 @@ public class ChangePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
     public ChangePage() {
-        super();
-        
+        super();        
     }
 
 	
@@ -34,25 +33,16 @@ public class ChangePage extends HttpServlet {
 		if(nome==null) {
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 		}
+		
 		else {
-			PrintWriter out = resp.getWriter();
-			out.println("<!DOCTYPE HTML>");
-			out.println("<html>");
-			out.println("<head><title>CIAO!</title></head>");
-			out.println("<body>");
-			out.println("<h1>MIAO</h1>");
-			out.println("</body>");
-			out.println("</html>");
+			resp.sendRedirect(req.getContextPath() + "/pag1.jsp");
 		}
 		
 		//Se è un utente fai questo
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//se elimino il doGet non passa all'altra pagina.. DUNQUE....
 		doGet(req, resp);
 	}
 
