@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Utente;
+import persistence.DBManager;
 import persistence.dao.DAOFactory;
 
 
@@ -40,5 +41,4 @@ public class RegistraUtente extends HttpServlet {
 		Utente utente = new Utente(nome, email,password);
 		DAOFactory.getUtenteDAO().save(utente);
 	}
-
 }

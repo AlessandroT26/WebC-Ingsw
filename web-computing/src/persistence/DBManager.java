@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import persistence.dao.DataSource;
+import persistence.dao.UtenteDao;
+import persistence.dao.UtenteDaoJDBC;
 
 
 
@@ -39,6 +41,11 @@ public class DBManager {
 		}
 		return instance;
 	}
+	
+	public static UtenteDao getUtenteDAO() {
+		return new UtenteDaoJDBC(dataSource);
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		DBManager.getInstance();
 		Connection connection = dataSource.getConnection();

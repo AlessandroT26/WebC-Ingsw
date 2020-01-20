@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Utente;
 
+
 import java.sql.*;
 public class UtenteDaoJDBC implements UtenteDao {
 	private DataSource dataSource;
@@ -45,10 +46,9 @@ public class UtenteDaoJDBC implements UtenteDao {
 	
 	@Override
 	public void save(Utente utente) {
-		Connection connection = null;
+		Connection connection = this.dataSource.getConnection();
 		try {
 			System.out.println("Primo try");
-			connection = this.dataSource.getConnection();
 			String insert = "INSERT INTO utente(nome, email, password) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getNome());
