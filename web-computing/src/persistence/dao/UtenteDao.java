@@ -9,4 +9,5 @@ public interface UtenteDao {
 	public List<Utente> findAll();
 	public void update(Utente utente); // Update
 	public void delete(Utente utente); // Delete
+	public boolean loginAccess(String nome, String password);
 }

@@ -66,23 +66,46 @@ public class UtenteDaoJDBC implements UtenteDao {
 		}
 	}
 
+	public boolean loginAccess(String nome, String password) {
+		String n=null;
+		String p=null;
+		Connection connection = this.dataSource.getConnection();
+		try {
+			PreparedStatement statement;
+			String query = "select * from utente where nome = ? and password = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, nome);
+			statement.setString(2, password);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				n=result.getString("nome");
+				p=result.getString("password");
+			}
+			
+		}catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
+		if(n!=null && p!= null)
+			return true;
+		return false;
+	}
+	
 	@Override
-	public Utente findByPrimaryKey(String id) {
-		Connection connection = null;
+	public Utente findByPrimaryKey(String nome) {
+		Connection connection = this.dataSource.getConnection();
 		Utente utente = null;
 		try {
-			connection = this.dataSource.getConnection();
 			PreparedStatement statement;
-			String query = "select * from utente where Id = ?";
+			String query = "select * from utente where nome = ?";
 			statement = connection.prepareStatement(query);
-			statement.setString(1, id);
+			statement.setString(1, nome);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				utente = new Utente();
-				utente.setId(result.getString("id"));
+				//utente.setId(result.getString("id"));
 				utente.setNome(result.getString("nome"));
-				utente.setEmail(result.getString("cognome"));
-				utente.setPassword(result.getString("email"));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
