@@ -15,7 +15,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	@Override
 	public List<Utente> findAll() {
 		Connection connection = null;
-		List<Utente> studenti = new LinkedList<>();
+		List<Utente> utenti = new LinkedList<>();
 		try {
 			connection = this.dataSource.getConnection();
 			Utente utente;
@@ -28,7 +28,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setNome(result.getString("nome"));
 				utente.setEmail(result.getString("email"));
 				utente.setPassword(result.getString("password"));
-				studenti.add(utente);
+				utenti.add(utente);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -39,7 +39,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return studenti;
+		return utenti;
 	}
 
 	

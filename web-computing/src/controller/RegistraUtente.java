@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,12 +36,13 @@ public class RegistraUtente extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		String nome = request.getParameter("nome");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		System.out.println(nome + " " + email + " " + password);
-		Utente utente = new Utente(nome, email,password);
-		DAOFactory.getUtenteDAO().save(utente);
+//		String nome = request.getParameter("nome");
+//		String email = request.getParameter("email");
+//		String password = request.getParameter("password");
+//		System.out.println(nome + " " + email + " " + password);
+//		Utente utente = new Utente(nome, email,password);
+		List<Utente> utenti = new LinkedList<>();
+		utenti = DAOFactory.getUtenteDAO().findAll();
 	}
 
 }
