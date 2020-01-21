@@ -34,7 +34,9 @@ public class RegistraUtente extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		//doGet(request, response);
+
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
