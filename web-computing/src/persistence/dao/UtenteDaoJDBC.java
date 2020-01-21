@@ -1,11 +1,14 @@
 package persistence.dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.Model;
 import model.Utente;
-
-import java.sql.*;
-public class UtenteDaoJDBC implements UtenteDao {
+public class UtenteDaoJDBC implements Dao {
 	private DataSource dataSource;
 
 	public UtenteDaoJDBC(DataSource dataSource) {
@@ -13,9 +16,13 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 	
 	@Override
-	public List<Utente> findAll() {
+	public List<Model> findAll() {
 		Connection connection = null;
+<<<<<<< HEAD
 		List<Utente> utenti = new LinkedList<>();
+=======
+		List<Model> studenti = new LinkedList<>();
+>>>>>>> refs/remotes/origin/miao3
 		try {
 			connection = this.dataSource.getConnection();
 			Utente utente;
@@ -44,11 +51,10 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	
 	@Override
-	public void save(Utente utente) {
-		Connection connection = null;
+	public void save(Model utente) {
+		Connection connection = this.dataSource.getConnection();
 		try {
 			System.out.println("Primo try");
-			connection = this.dataSource.getConnection();
 			String insert = "INSERT INTO utente(nome, email, password) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getNome());
@@ -67,7 +73,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public Utente findByPrimaryKey(String id) {
+	public Model findByPrimaryKey(String id) {
 		Connection connection = null;
 		Utente utente = null;
 		try {
@@ -97,7 +103,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public void update(Utente utente) {
+	public void update(Model utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String update = "update utente SET id = ?, Nome = ?, email = ?, password = ?";
@@ -119,7 +125,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public void delete(Utente utente) {
+	public void delete(Model utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "DELETE FROM Utente WHERE id = ?";
