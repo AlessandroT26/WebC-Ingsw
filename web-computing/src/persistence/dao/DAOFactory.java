@@ -14,7 +14,7 @@ public class DAOFactory {
 		}
 	}
 
-	public static Dao getUtenteDAO() {
+	public static UtenteDaoJDBC getUtenteDAO() {
 		return new UtenteDaoJDBC(dataSource);
 	}
 	

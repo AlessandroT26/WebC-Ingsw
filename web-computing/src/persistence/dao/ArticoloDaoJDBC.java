@@ -8,7 +8,6 @@ import java.util.List;
 
 import model.Articolo;
 import model.Model;
-import model.Utente;
 public class ArticoloDaoJDBC implements Dao {
 	private DataSource dataSource;
 

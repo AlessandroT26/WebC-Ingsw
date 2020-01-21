@@ -28,25 +28,27 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="<%=request.getContextPath()+"/Login" %>" method="post">					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<label for="nomeUtente"></label>
+						<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome utente">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<label for ="password"></label>
+						<input type="password" class="form-control" name="password" id="password" placeholder="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" id="submitButton" value="Login" class="btn float-right login_bt">
 					</div>
 				</form>
 			</div>
