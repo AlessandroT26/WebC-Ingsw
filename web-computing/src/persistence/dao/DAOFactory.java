@@ -14,12 +14,17 @@ public class DAOFactory {
 		}
 	}
 
-	public static UtenteDao getUtenteDAO() {
+	public static Dao getUtenteDAO() {
 		return new UtenteDaoJDBC(dataSource);
 	}
 	
-	public static AmministratoreDao getAmministratoreDAO() {
+	public static Dao getAmministratoreDAO() {
 		return new AmministratoreDaoJDBC(dataSource);
+	}
+
+	public static Dao makeArticoloDAO() {
+		// TODO Auto-generated method stub
+		return new ArticoloDaoJDBC(dataSource);
 	}
 
 	

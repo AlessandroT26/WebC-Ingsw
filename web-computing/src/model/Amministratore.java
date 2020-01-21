@@ -1,5 +1,5 @@
 package model;
-public class Amministratore {
+public class Amministratore implements Model{
 	private String nome;
 	private String email;
 	private String password;

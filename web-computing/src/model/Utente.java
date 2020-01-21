@@ -1,5 +1,5 @@
 package model;
-public class Utente {//elimina id(?)
+public class Utente implements Model{//elimina id(?)
 	private String nome;
 	private String email;
 	private String id;

@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.Articolo;
 import model.Model;
 import model.Utente;
-public class UtenteDaoJDBC implements Dao {
+public class ArticoloDaoJDBC implements Dao {
 	private DataSource dataSource;
 
-	public UtenteDaoJDBC(DataSource dataSource) {
+	public ArticoloDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 	
@@ -21,16 +22,16 @@ public class UtenteDaoJDBC implements Dao {
 		List<Model> studenti = new LinkedList<>();
 		try {
 			connection = this.dataSource.getConnection();
-			Utente utente;
+			Articolo utente;
 			PreparedStatement statement;
-			String query = "select * from utente";
+			String query = "select * from articolo";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				utente = new Utente();
-				utente.setNome(result.getString("nome"));
-				utente.setEmail(result.getString("email"));
-				utente.setPassword(result.getString("password"));
+				utente = new Articolo();
+				utente.setNome(result.getString("titolo"));
+				utente.setEmail(result.getString("contenuto"));
+				utente.setPassword(result.getString("immagine"));
 				studenti.add(utente);
 			}
 		} catch (SQLException e) {
@@ -51,7 +52,7 @@ public class UtenteDaoJDBC implements Dao {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			System.out.println("Primo try");
-			String insert = "INSERT INTO utente(nome, email, password) values (?,?,?)";
+			String insert = "INSERT INTO articolo(titolo, contenuto, immagine) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getEmail());
@@ -71,7 +72,7 @@ public class UtenteDaoJDBC implements Dao {
 	@Override
 	public Model findByPrimaryKey(String id) {
 		Connection connection = null;
-		Utente utente = null;
+		Articolo utente = null;
 		try {
 			connection = this.dataSource.getConnection();
 			PreparedStatement statement;
@@ -80,7 +81,7 @@ public class UtenteDaoJDBC implements Dao {
 			statement.setString(1, id);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				utente = new Utente();
+				utente = new Articolo();
 				utente.setId(result.getString("id"));
 				utente.setNome(result.getString("nome"));
 				utente.setEmail(result.getString("cognome"));

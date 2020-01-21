@@ -1,11 +1,14 @@
 package persistence.dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
 import model.Amministratore;
-
-import java.sql.*;
-public class AmministratoreDaoJDBC implements AmministratoreDao {
+import model.Model;
+public class AmministratoreDaoJDBC implements Dao {
 	private DataSource dataSource;
 
 	public AmministratoreDaoJDBC(DataSource dataSource) {
@@ -13,9 +16,9 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 	}
 	
 	@Override
-	public List<Amministratore> findAll() {
+	public List<Model> findAll() {
 		Connection connection = this.dataSource.getConnection();
-		List<Amministratore> studenti = new LinkedList<>();
+		List<Model> studenti = new LinkedList<>();
 		try {
 			Amministratore amministratore;
 			PreparedStatement statement;
@@ -44,7 +47,7 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 
 	
 	@Override
-	public void save(Amministratore amministratore) {
+	public void save(Model amministratore) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into amministratore(Id, Password, Nome, email,) values (?,?,?,?)";
@@ -66,7 +69,7 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 	}
 
 	@Override
-	public Amministratore findByPrimaryKey(String id) {
+	public Model findByPrimaryKey(String id) {
 		Connection connection = this.dataSource.getConnection();
 		Amministratore amministratore = null;
 		try {
@@ -95,7 +98,7 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 	}
 
 	@Override
-	public void update(Amministratore amministratore) {
+	public void update(Model amministratore) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String update = "update amministratore SET id = ?, Nome = ?, email = ?, password = ?";
@@ -117,7 +120,7 @@ public class AmministratoreDaoJDBC implements AmministratoreDao {
 	}
 
 	@Override
-	public void delete(Amministratore amministratore) {
+	public void delete(Model amministratore) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "DELETE FROM Amministratore WHERE id = ?";

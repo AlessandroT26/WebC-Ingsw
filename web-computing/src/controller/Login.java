@@ -1,17 +1,17 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Amministratore;
+import model.Model;
 import model.User;
 import model.UserType;
-import model.Utente;
 import persistence.dao.DAOFactory;
 import utility.BCrypt;
 public class Login extends HttpServlet
@@ -24,12 +24,12 @@ public class Login extends HttpServlet
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 		// Provo login Utente
-		Utente utente = null;
+		Model utente = null;
 		utente = DAOFactory.getUtenteDAO().findByPrimaryKey(id);
 		if (utente == null || !BCrypt.checkpw(password, utente.getPassword()))
 		{
 			// utente non trovato, provo login con amministratore
-			Amministratore amministratore = null;
+			Model amministratore = null;
 			amministratore = DAOFactory.getAmministratoreDAO().findByPrimaryKey(id);
 			if (amministratore == null || !BCrypt.checkpw(password, amministratore.getPassword()))
 			{

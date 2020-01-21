@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,26 +76,21 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <form>
-            <div class="form-group">
+        <div class="card-body">
+            <form action="<%=request.getContextPath()+"/CreaArticolo" %>" method="post">          
+            <div class="input-group form-group">
               <label for="comment">Titolo Articolo:</label>
-              <textarea class="form-control" rows="1" id="comment"></textarea>
+              <input type="text" class="form-control" name="titolo" id="titotlo">
             </div>
-            <div class="form-group">
-              <label for="comment">Sottotitolo Articolo</label>
-              <textarea class="form-control" rows="2" id="comment"></textarea>
-            </div>
-            <div class="form-group">
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Inserire qui il testo dell'articolo</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                 <input type="text"  class="form-control" id="contenuto" name="contenuto">
               </div>
             <div class="form-group">
               <label for="exampleFormControlFile1">Inserisci le immagini</label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <input type="file" class="form-control-file" id="immagine">
              </div>
-            <div clas=s"form-group">
+            <div class="form-group">
             <input type="submit" id="submitButton" value="Invia Articolo">
           </div>
             </form>
