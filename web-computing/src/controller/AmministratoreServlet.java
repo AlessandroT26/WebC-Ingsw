@@ -4,13 +4,13 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Amministratore;
+import model.Model;
 import persistence.dao.DAOFactory;
 /**
  * Servlet implementation class AmministratoreServlet
@@ -35,7 +35,7 @@ public class AmministratoreServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		switch (action) {
 		case "controllaId":
-			Amministratore controllaid = DAOFactory.getAmministratoreDAO().findByPrimaryKey(request.getParameter("id"));
+			Model controllaid = DAOFactory.getAmministratoreDAO().findByPrimaryKey(request.getParameter("id"));
 			if (controllaid != null) {
 				out.write("esistente");
 				out.flush();
